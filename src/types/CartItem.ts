@@ -1,5 +1,5 @@
 import type { Plant } from "./Plant";
 
-interface CartItem extends Plant {
+export interface CartItem extends Plant {
     amount: number
 };
