@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import '../../styles/PlantItem.css'
-import type { Plant } from "../../types/Plant"
+import type { PlantPreview } from "../../types/Plant"
 import type { MouseEvent } from 'react'
 
-type PlantPreview = Pick<Plant, 'cover' | 'name' | 'price' | 'id' >
 
 interface PlantItemProps extends PlantPreview {
 	onAddToCart: () => void

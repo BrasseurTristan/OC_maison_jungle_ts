@@ -8,7 +8,7 @@ interface BannerProps {
 }
 
 function Banner({ cart }: BannerProps) {
-	const totalItems = cart.reduce((acc, item) => acc + item.amount, 0) : 0
+	const totalItems = cart ? cart.reduce((acc, item) => acc + item.amount, 0) : 0
 
 	return (
 		<div className='lmj-banner'>

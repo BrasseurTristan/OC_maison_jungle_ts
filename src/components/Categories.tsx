@@ -1,7 +1,5 @@
 import '../styles/Categories.css'
-import type {PlantCategory} from '../types/Plant'
-
-type CategoriesOption = PlantCategory | ''
+import type {PlantCategory, CategoriesOption} from '../types/Plant'
 
 interface CategoriesProps {
 	categories: PlantCategory[]
