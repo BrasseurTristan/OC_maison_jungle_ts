@@ -1,6 +1,15 @@
 import '../styles/Categories.css'
+import type {PlantCategory} from '../types/Plant'
 
-function Categories({ setActiveCategory, categories, activeCategory }) {
+type CategoriesOption = PlantCategory | ''
+
+interface CategoriesProps {
+	categories: PlantCategory[]
+	activeCategory : CategoriesOption
+	setActiveCategory: (cat :CategoriesOption) => void
+}
+
+function Categories({ setActiveCategory, categories, activeCategory }: CategoriesProps) {
 	return (
 		<div className='lmj-categories'>
 			<div className='lmj-categories-tags'>

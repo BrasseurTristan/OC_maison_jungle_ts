@@ -1,7 +1,14 @@
 import Sun from '../../assets/sun.svg'
 import Water from '../../assets/water.svg'
+import type { CareLevel } from '../../types/Plant'
 
-function CareScale({ scaleValue, careType }) {
+ 
+interface CareScaleProps {
+	scaleValue : CareLevel
+	careType : 'water'| 'light'
+}
+
+function CareScale({ scaleValue, careType }: CareScaleProps) {
 	const range = [1, 2, 3]
 	const scaleType =
 		careType === 'light' ? (
