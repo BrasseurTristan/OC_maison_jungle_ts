@@ -2,8 +2,14 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { plantList } from '../datas/plantList'
 import CareScale from '../components/ui/CareScale'
 import '../styles/PlantDetailPage.css'
+import type { PlantCategory } from '../types/Plant'
+import type { AddToCart } from '../types/CartItem'
 
-function PlantDetailPage({ cart, addToCart }) {
+interface PlantDetailPageProps {
+	addToCart: AddToCart
+}
+
+function PlantDetailPage({ addToCart }:PlantDetailPageProps) {
 	const { id } = useParams()
 	const navigate = useNavigate()
 	
@@ -18,7 +24,7 @@ function PlantDetailPage({ cart, addToCart }) {
 		addToCart(plant)
 	}
 	
-	const getCategoryLabel = (category) => {
+	const getCategoryLabel = (category: PlantCategory) => {
 		const labels = {
 			'classique': 'Plantes classiques',
 			'extérieur': 'Plantes d\'extérieur',
