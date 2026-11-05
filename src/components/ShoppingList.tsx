@@ -3,15 +3,13 @@ import { plantList } from '../datas/plantList'
 import PlantItem from './ui/PlantItem'
 import Categories from './Categories'
 import '../styles/ShoppingList.css'
-import type { CartItem } from '../types/CartItem'
 import type { Plant, PlantCategory, CategoriesOption } from '../types/Plant'
 
 interface ShoppingListProps {
-	cart: CartItem[]
 	addToCart: ({name, price}: Pick<Plant,'name' | 'price'>) => void
 }
 
-function ShoppingList({ cart, addToCart }: ShoppingListProps) {
+function ShoppingList({ addToCart }: ShoppingListProps) {
 	const [activeCategory, setActiveCategory] = useState<CategoriesOption>('')
 	const categories = plantList.reduce<PlantCategory[]>(
 		(acc, plant) =>
