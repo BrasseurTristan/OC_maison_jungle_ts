@@ -2,13 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // @ts-expect-error 
 import { useCart } from '../hooks/useCart'
 import Banner from './layout/Banner'
-// @ts-expect-error 
 import HomePage from '../pages/HomePage'
 // @ts-expect-error 
 import CartPage from '../pages/CartPage'
 // @ts-expect-error 
 import PlantDetailPage from '../pages/PlantDetailPage'
-// @ts-expect-error 
 import NotFoundPage from '../pages/NotFoundPage'
 
 function App() {
@@ -20,7 +18,7 @@ function App() {
 				<Banner cart={cart} />
 				
 				<Routes>
-					<Route path="/" element={<HomePage cart={cart} addToCart={addToCart} />} />
+					<Route path="/" element={<HomePage addToCart={addToCart} />} />
 					<Route path="/cart" element={<CartPage cart={cart} clearCart={clearCart} updateQuantity={updateQuantity} />} />
 					<Route path="/plant/:id" element={<PlantDetailPage cart={cart} addToCart={addToCart} />} />
 					<Route path="/404" element={<NotFoundPage />} />
