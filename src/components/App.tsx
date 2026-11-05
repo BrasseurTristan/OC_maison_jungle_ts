@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
 import Banner from './layout/Banner'
 import HomePage from '../pages/HomePage'
-// @ts-expect-error 
 import CartPage from '../pages/CartPage'
 import PlantDetailPage from '../pages/PlantDetailPage'
 import NotFoundPage from '../pages/NotFoundPage'
