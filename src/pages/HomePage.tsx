@@ -1,10 +1,10 @@
 import Footer from '../components/layout/Footer'
 import ShoppingList from '../components/ShoppingList'
 import '../styles/Layout.css'
-import type { Plant } from '../types/Plant'
+import type { AddToCart } from '../types/CartItem'
 
 interface HomePageProps {
-	addToCart:  ({name, price}: Pick<Plant,'name' | 'price'>) => void
+	addToCart: AddToCart
 }
 
 function HomePage({ addToCart }: HomePageProps) {

@@ -3,10 +3,11 @@ import { plantList } from '../datas/plantList'
 import PlantItem from './ui/PlantItem'
 import Categories from './Categories'
 import '../styles/ShoppingList.css'
-import type { Plant, PlantCategory, CategoriesOption } from '../types/Plant'
+import type { PlantCategory, CategoriesOption } from '../types/Plant'
+import type { AddToCart } from '../types/CartItem'
 
 interface ShoppingListProps {
-	addToCart: ({name, price}: Pick<Plant,'name' | 'price'>) => void
+	addToCart: AddToCart
 }
 
 function ShoppingList({ addToCart }: ShoppingListProps) {
