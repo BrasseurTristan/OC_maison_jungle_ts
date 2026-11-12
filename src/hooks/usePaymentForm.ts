@@ -1,15 +1,20 @@
 import { useState } from "react";
+import type {
+  PaymentFormData,
+  PaymentFieldName,
+  PaymentFormErrors,
+} from "../types/PaymentData";
 
 export const usePaymentForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<PaymentFormData>({
     cardNumber: "",
     expiryDate: "",
     cvv: "",
     cardholderName: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<PaymentFormErrors>({});
 
-  const updateField = (name, value) => {
+  const updateField = (name: PaymentFieldName, value: string): void => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -24,7 +29,10 @@ export const usePaymentForm = () => {
     }
   };
 
-  const validateField = (name, value) => {
+  const validateField = (
+    name: PaymentFieldName,
+    value: string
+  ): string | null => {
     switch (name) {
       case "cardNumber":
         const cleanCardNumber = value.replace(/\s/g, "");
@@ -67,11 +75,11 @@ export const usePaymentForm = () => {
     return null;
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): boolean => {
+    const newErrors: PaymentFormErrors = {};
     let isValid = true;
 
-    Object.keys(formData).forEach((fieldName) => {
+    (Object.keys(formData) as PaymentFieldName[]).forEach((fieldName) => {
       const error = validateField(fieldName, formData[fieldName]);
       if (error) {
         newErrors[fieldName] = error;
@@ -83,11 +91,11 @@ export const usePaymentForm = () => {
     return isValid;
   };
 
-  const formatCardNumber = (value) => {
+  const formatCardNumber = (value: string): string => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
     const matches = v.match(/\d{4,16}/g);
     const match = (matches && matches[0]) || "";
-    const parts = [];
+    const parts: string[] = [];
     for (let i = 0, len = match.length; i < len; i += 4) {
       parts.push(match.substring(i, i + 4));
     }
@@ -98,7 +106,7 @@ export const usePaymentForm = () => {
     }
   };
 
-  const formatExpiryDate = (value) => {
+  const formatExpiryDate = (value: string): string => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
     if (v.length >= 2) {
       return v.substring(0, 2) + "/" + v.substring(2, 4);
@@ -106,7 +114,7 @@ export const usePaymentForm = () => {
     return v;
   };
 
-  const resetForm = () => {
+  const resetForm = (): void => {
     setFormData({
       cardNumber: "",
       expiryDate: "",

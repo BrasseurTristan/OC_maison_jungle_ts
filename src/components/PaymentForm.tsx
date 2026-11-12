@@ -1,9 +1,9 @@
 import type { ChangeEvent, FormEvent } from 'react'
 import { usePayment } from '../hooks/usePayment'
-// @ts-expect-error 
 import { usePaymentForm } from '../hooks/usePaymentForm'
 import '../styles/PaymentForm.css'
 import type { PaymentResult } from '../types/PaymentResult'
+import type { PaymentFieldName } from '../types/PaymentData'
 
 interface PaymentFormProps {
   amount: number
@@ -24,7 +24,7 @@ function PaymentForm({ amount, onSuccess, onCancel }: PaymentFormProps) {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    updateField(name, value)
+    updateField(name as PaymentFieldName, value)
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
