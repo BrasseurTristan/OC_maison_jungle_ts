@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { PaymentService } from "../services/paymentService";
+import type { PaymentData } from "../types/PaymentData";
+import type { PaymentResult } from "../types/PaymentResult";
 
 export const usePayment = () => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [transactionResult, setTransactionResult] = useState(null);
+  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [transactionResult, setTransactionResult] =
+    useState<PaymentResult | null>(null);
 
-  const processPayment = async (paymentData) => {
+  const processPayment = async (
+    paymentData: PaymentData
+  ): Promise<PaymentResult> => {
     setIsProcessing(true);
     setError(null);
     setSuccess(false);
@@ -19,14 +24,14 @@ export const usePayment = () => {
       setTransactionResult(result);
       return result;
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : "Erreur inconnue");
       throw err;
     } finally {
       setIsProcessing(false);
     }
   };
 
-  const resetPayment = () => {
+  const resetPayment = (): void => {
     setError(null);
     setSuccess(false);
     setTransactionResult(null);

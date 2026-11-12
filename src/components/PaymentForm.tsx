@@ -1,5 +1,4 @@
 import type { ChangeEvent, FormEvent } from 'react'
-// @ts-expect-error 
 import { usePayment } from '../hooks/usePayment'
 // @ts-expect-error 
 import { usePaymentForm } from '../hooks/usePaymentForm'
