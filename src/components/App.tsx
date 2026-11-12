@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-// @ts-expect-error 
 import { useCart } from '../hooks/useCart'
 import Banner from './layout/Banner'
 import HomePage from '../pages/HomePage'

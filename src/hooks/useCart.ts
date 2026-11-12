@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
+import type { CartItem, AddToCart } from "../types/CartItem";
 
 export const useCart = () => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   // Charger le panier depuis localStorage au montage
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       try {
-        setCart(JSON.parse(savedCart));
+        setCart(JSON.parse(savedCart) as CartItem[]);
       } catch (error) {
         console.error("Erreur lors du chargement du panier:", error);
         setCart([]);
@@ -21,7 +22,7 @@ export const useCart = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (plant) => {
+  const addToCart: AddToCart = (plant) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.name === plant.name);
 
@@ -37,11 +38,11 @@ export const useCart = () => {
     });
   };
 
-  const removeFromCart = (plantName) => {
+  const removeFromCart = (plantName: string): void => {
     setCart((prevCart) => prevCart.filter((item) => item.name !== plantName));
   };
 
-  const updateQuantity = (plantName, newAmount) => {
+  const updateQuantity = (plantName: string, newAmount: number): void => {
     if (newAmount <= 0) {
       removeFromCart(plantName);
       return;
@@ -54,19 +55,19 @@ export const useCart = () => {
     );
   };
 
-  const clearCart = () => {
+  const clearCart = (): void => {
     setCart([]);
   };
 
-  const getTotal = () => {
+  const getTotal = (): number => {
     return cart.reduce((total, item) => total + item.price * item.amount, 0);
   };
 
-  const getItemCount = () => {
+  const getItemCount = (): number => {
     return cart.reduce((count, item) => count + item.amount, 0);
   };
 
-  const getCartItem = (plantName) => {
+  const getCartItem = (plantName: string): CartItem | undefined => {
     return cart.find((item) => item.name === plantName);
   };
 
